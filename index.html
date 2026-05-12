@@ -1,0 +1,1015 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Protocolo Coluna Sem Dor — Alana Barboza</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,600&display=swap" rel="stylesheet" />
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --red: #E30613;
+  --red-dark: #B00000;
+  --black: #0A0A0A;
+  --dark: #111111;
+  --dark2: #1A1A1A;
+  --dark3: #222222;
+  --gray3: #3F3F3F;
+  --gray6: #6B6B6B;
+  --grayC: #C7C7C7;
+  --grayE: #E5E5E5;
+  --white: #FFFFFF;
+}
+
+html { scroll-behavior: smooth; }
+body {
+  background: var(--black);
+  color: var(--white);
+  font-family: 'Inter', sans-serif;
+  font-size: 16px;
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+/* ─── UTILITIES ─────────────────────────────────── */
+.container { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
+.red { color: var(--red); }
+.bebas { font-family: 'Bebas Neue', sans-serif; }
+.tag {
+  display: inline-block;
+  background: var(--red);
+  color: var(--white);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  padding: 5px 14px;
+  margin-bottom: 14px;
+}
+.divider {
+  width: 48px; height: 3px;
+  background: var(--red);
+  margin: 14px 0 20px;
+}
+.divider.center { margin: 14px auto 20px; }
+
+/* ─── NAV ─────────────────────────────────────── */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  background: rgba(10,10,10,0.95);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid var(--dark3);
+  padding: 0 24px;
+}
+.nav-inner {
+  max-width: 1100px; margin: 0 auto;
+  height: 58px; display: flex; align-items: center; justify-content: space-between;
+}
+.nav-logo { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+.nav-logo img { height: 32px; width: 32px; object-fit: contain; }
+.nav-logo-text { font-family: 'Bebas Neue', sans-serif; font-size: 16px; color: var(--white); letter-spacing: 1.5px; }
+.nav-cta {
+  background: var(--red); color: var(--white);
+  padding: 9px 22px; font-size: 12px; font-weight: 700;
+  letter-spacing: 1.5px; text-transform: uppercase; text-decoration: none;
+  transition: background 0.2s;
+}
+.nav-cta:hover { background: var(--red-dark); }
+
+/* ─── BUTTONS ─────────────────────────────────── */
+.btn-primary {
+  display: inline-flex; align-items: center; justify-content: center; gap: 10px;
+  background: var(--red); color: var(--white);
+  padding: 18px 40px;
+  font-family: 'Bebas Neue', sans-serif; font-size: 22px; letter-spacing: 1.5px;
+  text-decoration: none; transition: all 0.2s; border: none; cursor: pointer;
+  position: relative; overflow: hidden;
+}
+.btn-primary::after {
+  content: ''; position: absolute; inset: 0;
+  background: rgba(255,255,255,0.08);
+  opacity: 0; transition: opacity 0.2s;
+}
+.btn-primary:hover::after { opacity: 1; }
+.btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 28px rgba(227,6,19,0.4); }
+
+.btn-ghost {
+  display: inline-flex; align-items: center; gap: 8px;
+  border: 1.5px solid var(--red); color: var(--red);
+  padding: 13px 28px;
+  font-family: 'Bebas Neue', sans-serif; font-size: 18px; letter-spacing: 1px;
+  text-decoration: none; transition: all 0.2s;
+}
+.btn-ghost:hover { background: var(--red); color: var(--white); }
+
+/* ─── TRUST BADGES ────────────────────────────── */
+.trust-row {
+  display: flex; align-items: center; gap: 20px; flex-wrap: wrap;
+  margin-top: 18px;
+}
+.trust-item {
+  display: flex; align-items: center; gap: 6px;
+  font-size: 12px; color: var(--gray6);
+}
+.trust-item svg { flex-shrink: 0; }
+
+/* ─── BOOK MOCKUP ─────────────────────────────── */
+.book-wrap {
+  perspective: 900px;
+  display: flex; align-items: center; justify-content: center;
+}
+.book {
+  width: 240px; height: 320px;
+  position: relative;
+  transform-style: preserve-3d;
+  transform: rotateY(-22deg) rotateX(4deg);
+  filter: drop-shadow(-24px 24px 40px rgba(227,6,19,0.35));
+  animation: float 4s ease-in-out infinite;
+}
+@keyframes float {
+  0%, 100% { transform: rotateY(-22deg) rotateX(4deg) translateY(0); }
+  50% { transform: rotateY(-22deg) rotateX(4deg) translateY(-10px); }
+}
+.book-cover {
+  position: absolute; inset: 0;
+  background: var(--black) url('ebook-cover.png') center/cover no-repeat;
+  display: flex; flex-direction: column;
+  overflow: hidden;
+}
+.book-cover-red-block, .book-cover-content, .book-cover-bars { display: none !important; }
+.book-cover-red-block {
+  position: absolute; top: 0; right: 0;
+  width: 160px; height: 280px;
+  background: var(--red);
+  clip-path: polygon(50% 0, 100% 0, 100% 100%, 0 100%);
+}
+.book-cover-content {
+  position: relative; z-index: 1; padding: 18px 16px; flex: 1;
+  display: flex; flex-direction: column;
+}
+.book-cover-tag {
+  font-size: 7px; font-weight: 700; color: var(--red);
+  letter-spacing: 2px; text-transform: uppercase; margin-bottom: 6px;
+}
+.book-cover-title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 32px; color: var(--white); line-height: 0.9;
+}
+.book-cover-sub {
+  font-size: 7px; color: rgba(255,255,255,0.6); margin-top: 8px; line-height: 1.5;
+}
+.book-spine {
+  position: absolute; top: 0; bottom: 0; left: -22px; width: 22px;
+  background: var(--red-dark);
+  transform-origin: right;
+  display: flex; align-items: center; justify-content: center;
+}
+.book-spine-text {
+  font-family: 'Bebas Neue', sans-serif; font-size: 8px; color: rgba(255,255,255,0.7);
+  writing-mode: vertical-rl; letter-spacing: 2px; transform: rotate(180deg);
+}
+.book-cover-bars {
+  position: absolute; bottom: 16px; left: 14px; z-index: 2;
+  display: flex; gap: 3px;
+}
+.bar { width: 3px; height: 18px; background: rgba(255,255,255,0.25); transform: skewX(-12deg); }
+
+/* ─── HERO ────────────────────────────────────── */
+#hero {
+  min-height: 100vh;
+  background: var(--black);
+  padding-top: 58px;
+  position: relative;
+  overflow: hidden;
+  display: flex; align-items: center;
+}
+.hero-bg {
+  position: absolute; inset: 0;
+  background: radial-gradient(ellipse 60% 80% at 70% 50%, rgba(227,6,19,0.12) 0%, transparent 65%),
+              radial-gradient(ellipse 40% 60% at 20% 20%, rgba(227,6,19,0.06) 0%, transparent 60%);
+}
+.hero-grid-lines {
+  position: absolute; inset: 0; opacity: 0.04;
+  background-image: repeating-linear-gradient(90deg, var(--white) 0, var(--white) 1px, transparent 0, transparent 80px);
+}
+.hero-inner {
+  position: relative; z-index: 2;
+  display: grid; grid-template-columns: 1fr auto; gap: 60px; align-items: center;
+  padding: 80px 0;
+}
+.hero-eyebrow {
+  font-size: 11px; font-weight: 700; color: var(--red);
+  letter-spacing: 3.5px; text-transform: uppercase; margin-bottom: 12px;
+  display: flex; align-items: center; gap: 8px;
+}
+.hero-eyebrow::before { content: '///'; color: var(--red); font-style: normal; }
+.hero-h1 {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(54px, 6vw, 80px);
+  line-height: 0.9; color: var(--white);
+  margin-bottom: 10px;
+}
+.hero-h1 em { color: var(--red); font-style: normal; }
+.hero-sub {
+  font-size: 16px; color: var(--grayC); line-height: 1.7;
+  max-width: 480px; margin-bottom: 32px; margin-top: 14px;
+}
+.hero-book-wrap {
+  display: flex; align-items: center; justify-content: center;
+  padding-right: 20px;
+}
+
+/* ─── SECTION STYLES ──────────────────────────── */
+section { position: relative; }
+
+.section-dark { background: var(--dark); }
+.section-darker { background: var(--dark2); }
+.section-black { background: var(--black); }
+
+/* ─── PAIN POINTS ─────────────────────────────── */
+#pain {
+  background: var(--dark);
+  padding: 80px 0;
+  border-top: 1px solid var(--dark3);
+}
+.pain-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px;
+  margin-top: 40px;
+}
+.pain-card {
+  background: var(--dark2); padding: 32px 24px;
+  border-top: 3px solid transparent;
+  transition: border-color 0.2s;
+}
+.pain-card:hover { border-color: var(--red); }
+.pain-icon {
+  width: 48px; height: 48px; background: rgba(227,6,19,0.12);
+  display: flex; align-items: center; justify-content: center;
+  margin-bottom: 16px; font-size: 22px;
+}
+.pain-title {
+  font-family: 'Bebas Neue', sans-serif; font-size: 22px; color: var(--white);
+  margin-bottom: 10px; line-height: 1;
+}
+.pain-desc { font-size: 14px; color: var(--gray6); line-height: 1.65; }
+
+/* ─── TEASER / WHAT'S INSIDE ──────────────────── */
+#teaser {
+  background: var(--black); padding: 88px 0;
+}
+.teaser-inner {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 72px; align-items: center;
+}
+.teaser-list { display: flex; flex-direction: column; gap: 14px; margin-top: 20px; }
+.teaser-item {
+  display: flex; gap: 14px; align-items: flex-start;
+  padding: 14px 16px; background: var(--dark2);
+  border-left: 2px solid var(--red);
+  transition: background 0.2s;
+}
+.teaser-item:hover { background: var(--dark3); }
+.teaser-num {
+  font-family: 'Bebas Neue', sans-serif; font-size: 22px; color: var(--red);
+  line-height: 1; flex-shrink: 0; width: 28px;
+}
+.teaser-text { font-size: 14px; color: var(--grayC); line-height: 1.5; }
+.teaser-text strong { color: var(--white); display: block; margin-bottom: 3px; font-size: 15px; }
+
+/* ─── ABOUT ───────────────────────────────────── */
+#about {
+  background: var(--dark2);
+  padding: 96px 0;
+  overflow: hidden;
+  position: relative;
+}
+.about-name-bg {
+  position: absolute; inset: 0;
+  display: flex; flex-direction: column; justify-content: center; overflow: hidden;
+  pointer-events: none; user-select: none;
+}
+.about-name-row {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(72px, 10vw, 130px);
+  color: var(--white); opacity: 0.04;
+  white-space: nowrap; line-height: 1;
+  letter-spacing: 4px;
+}
+.about-name-row:nth-child(even) { transform: translateX(-40px); }
+.about-inner {
+  position: relative; z-index: 2;
+  display: grid; grid-template-columns: auto 1fr; gap: 60px; align-items: center;
+}
+.about-photo {
+  width: 280px; height: 360px;
+  background: var(--dark3);
+  display: flex; align-items: center; justify-content: center;
+  flex-direction: column; gap: 8px;
+  border-bottom: 4px solid var(--red);
+  position: relative; overflow: hidden;
+}
+.about-photo-label {
+  font-size: 11px; color: var(--gray3); text-align: center; padding: 0 20px;
+  font-style: italic;
+}
+.about-photo::before {
+  content: ''; position: absolute; top: 0; right: 0;
+  width: 60px; height: 60px;
+  background: var(--red); opacity: 0.15;
+  clip-path: polygon(100% 0, 100% 100%, 0 0);
+}
+.about-stats {
+  display: flex; gap: 0; margin: 24px 0;
+}
+.about-stat {
+  flex: 1; padding: 16px 20px; background: var(--dark3);
+  border-right: 1px solid var(--dark2);
+  text-align: center;
+}
+.about-stat:first-child { border-left: 3px solid var(--red); }
+.about-stat-val {
+  font-family: 'Bebas Neue', sans-serif; font-size: 34px; color: var(--red); line-height: 1;
+}
+.about-stat-label { font-size: 11px; color: var(--gray6); margin-top: 4px; }
+
+/* ─── TESTIMONIALS ────────────────────────────── */
+#testimonials {
+  background: var(--black); padding: 88px 0;
+  border-top: 1px solid var(--dark3);
+}
+.testi-grid {
+  display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; margin-top: 44px;
+}
+.testi-card {
+  background: var(--dark2); padding: 28px 24px;
+  border: 1px solid var(--dark3);
+  position: relative;
+}
+.testi-card::before {
+  content: '"';
+  position: absolute; top: 16px; right: 20px;
+  font-family: 'Bebas Neue', sans-serif; font-size: 64px; color: var(--red);
+  opacity: 0.15; line-height: 1;
+}
+.testi-stars { color: var(--red); font-size: 14px; margin-bottom: 12px; letter-spacing: 2px; }
+.testi-text { font-size: 14px; color: var(--grayC); line-height: 1.7; font-style: italic; margin-bottom: 18px; }
+.testi-author { display: flex; align-items: center; gap: 12px; }
+.testi-avatar {
+  width: 42px; height: 42px; border-radius: 50%;
+  background: var(--dark3); border: 2px solid var(--red);
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'Bebas Neue', sans-serif; font-size: 16px; color: var(--red);
+}
+.testi-name { font-size: 13px; font-weight: 700; color: var(--white); }
+.testi-role { font-size: 11px; color: var(--gray6); }
+
+/* ─── WHAT YOU GET ────────────────────────────── */
+#get {
+  background: var(--dark); padding: 96px 0;
+}
+.get-inner {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 72px; align-items: center;
+}
+.get-list { display: flex; flex-direction: column; gap: 10px; margin-top: 20px; }
+.get-item {
+  display: flex; gap: 12px; align-items: flex-start; padding: 12px 0;
+  border-bottom: 1px solid var(--dark3);
+}
+.get-check {
+  width: 22px; height: 22px; background: var(--red);
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0; font-size: 12px; margin-top: 1px;
+}
+.get-item-text { font-size: 14px; color: var(--grayC); line-height: 1.5; }
+.get-item-text strong { color: var(--white); }
+.bonus-label {
+  display: inline-block; background: rgba(227,6,19,0.15); border: 1px solid var(--red);
+  color: var(--red); font-size: 10px; font-weight: 700; letter-spacing: 1.5px;
+  padding: 2px 8px; margin-left: 8px; text-transform: uppercase; vertical-align: middle;
+}
+
+/* ─── PRICE ───────────────────────────────────── */
+#price {
+  background: var(--black); padding: 96px 0;
+  position: relative; overflow: hidden;
+}
+#price::before {
+  content: ''; position: absolute; inset: 0;
+  background: radial-gradient(ellipse 70% 80% at 50% 50%, rgba(227,6,19,0.09) 0%, transparent 70%);
+}
+.price-box {
+  max-width: 580px; margin: 0 auto;
+  background: var(--dark2); border: 1px solid var(--dark3);
+  padding: 48px 48px 40px;
+  position: relative; z-index: 2;
+  text-align: center;
+}
+.price-box::before {
+  content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+  background: var(--red);
+}
+.price-eyebrow { font-size: 11px; font-weight: 700; color: var(--gray6); letter-spacing: 3px; text-transform: uppercase; margin-bottom: 10px; }
+.price-title { font-family: 'Bebas Neue', sans-serif; font-size: 36px; color: var(--white); margin-bottom: 6px; }
+.price-from { font-size: 13px; color: var(--gray6); text-decoration: line-through; margin-bottom: 4px; }
+.price-value { font-family: 'Bebas Neue', sans-serif; font-size: 72px; color: var(--red); line-height: 1; margin-bottom: 4px; }
+.price-installment { font-size: 13px; color: var(--gray6); margin-bottom: 32px; }
+.price-cta-wrap { display: flex; flex-direction: column; align-items: center; gap: 14px; }
+.price-btn {
+  width: 100%; display: flex; align-items: center; justify-content: center;
+  background: var(--red); color: var(--white);
+  padding: 20px 40px; font-family: 'Bebas Neue', sans-serif; font-size: 26px;
+  letter-spacing: 2px; text-decoration: none; transition: all 0.2s;
+  position: relative; overflow: hidden;
+}
+.price-btn:hover { transform: translateY(-2px); box-shadow: 0 10px 32px rgba(227,6,19,0.45); }
+.price-guarantee {
+  display: flex; align-items: center; gap: 10px; margin-top: 24px;
+  padding-top: 24px; border-top: 1px solid var(--dark3);
+}
+.guarantee-badge {
+  width: 64px; height: 64px; border: 2px solid var(--red); border-radius: 50%;
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  flex-shrink: 0;
+}
+.guarantee-num { font-family: 'Bebas Neue', sans-serif; font-size: 26px; color: var(--red); line-height: 1; }
+.guarantee-days { font-size: 8px; color: var(--red); letter-spacing: 1px; font-weight: 700; }
+.guarantee-text { font-size: 13px; color: var(--gray6); line-height: 1.6; text-align: left; }
+.secure-icons { display: flex; align-items: center; gap: 16px; justify-content: center; margin-top: 16px; }
+.secure-icon { font-size: 11px; color: var(--gray3); display: flex; align-items: center; gap: 5px; }
+
+/* ─── FAQ ─────────────────────────────────────── */
+#faq {
+  background: var(--dark2); padding: 88px 0;
+  border-top: 1px solid var(--dark3);
+}
+.faq-list { max-width: 720px; margin: 40px auto 0; display: flex; flex-direction: column; gap: 2px; }
+.faq-item { background: var(--dark3); }
+.faq-question {
+  width: 100%; display: flex; align-items: center; justify-content: space-between;
+  padding: 18px 22px; background: none; border: none; color: var(--white);
+  font-size: 15px; font-weight: 600; cursor: pointer; text-align: left; gap: 12px;
+  transition: color 0.2s;
+}
+.faq-question:hover { color: var(--red); }
+.faq-icon {
+  width: 22px; height: 22px; border: 1.5px solid var(--gray3);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 16px; flex-shrink: 0; color: var(--red); transition: transform 0.3s;
+}
+.faq-item.open .faq-icon { transform: rotate(45deg); }
+.faq-answer {
+  max-height: 0; overflow: hidden;
+  transition: max-height 0.35s ease, padding 0.25s;
+  padding: 0 22px;
+}
+.faq-item.open .faq-answer { max-height: 200px; padding: 0 22px 18px; }
+.faq-answer p { font-size: 14px; color: var(--gray6); line-height: 1.7; }
+
+/* ─── FOOTER ──────────────────────────────────── */
+footer {
+  background: var(--red); padding: 20px 0;
+}
+.footer-inner {
+  max-width: 1100px; margin: 0 auto; padding: 0 24px;
+  display: flex; align-items: center; justify-content: space-between; gap: 20px;
+  flex-wrap: wrap;
+}
+.footer-logo { display: flex; align-items: center; gap: 8px; }
+.footer-logo img { height: 26px; }
+.footer-logo-text { font-family: 'Bebas Neue', sans-serif; font-size: 14px; color: var(--white); letter-spacing: 1px; }
+.footer-copy { font-size: 11px; color: rgba(255,255,255,0.65); }
+.footer-links { display: flex; gap: 16px; }
+.footer-links a { font-size: 11px; color: rgba(255,255,255,0.65); text-decoration: none; }
+.footer-links a:hover { color: var(--white); }
+
+/* ─── SECTION HEADERS ─────────────────────────── */
+.section-header { text-align: center; }
+.section-header .tag { display: inline-block; }
+.section-h2 {
+  font-family: 'Bebas Neue', sans-serif; font-size: clamp(36px, 4vw, 52px);
+  color: var(--white); line-height: 1; margin-bottom: 12px;
+}
+.section-h2 em { color: var(--red); font-style: normal; }
+.section-sub { font-size: 15px; color: var(--gray6); max-width: 540px; margin: 0 auto; line-height: 1.7; }
+
+/* ─── SCROLL ANIMATION ────────────────────────── */
+.reveal { opacity: 0; transform: translateY(28px); transition: opacity 0.6s, transform 0.6s; }
+.reveal.visible { opacity: 1; transform: translateY(0); }
+
+/* ─── THREE BARS DECO ─────────────────────────── */
+.three-bars { display: flex; gap: 4px; align-items: center; }
+.three-bars span { display: block; width: 3px; background: var(--red); transform: skewX(-12deg); }
+
+/* ─── MOBILE ──────────────────────────────────── */
+@media (max-width: 768px) {
+  body { font-size: 15px; }
+  .container { padding: 0 20px; }
+
+  /* Nav */
+  nav { padding: 0 16px; }
+  .nav-inner { height: 54px; }
+  .nav-logo img { height: 28px; width: 28px; }
+  .nav-logo-text { font-size: 14px; letter-spacing: 1px; }
+  .nav-cta { padding: 8px 14px; font-size: 10px; letter-spacing: 1px; }
+
+  /* Buttons */
+  .btn-primary { padding: 16px 28px; font-size: 18px; width: 100%; }
+  .btn-ghost { padding: 11px 22px; font-size: 16px; }
+
+  /* Hero */
+  #hero { padding-top: 54px; }
+  .hero-inner {
+    grid-template-columns: 1fr;
+    gap: 36px;
+    padding: 48px 0 56px;
+    text-align: center;
+  }
+  .hero-eyebrow { justify-content: center; font-size: 10px; letter-spacing: 2.5px; }
+  .hero-h1 { font-size: clamp(42px, 11vw, 60px); }
+  .hero-sub { margin-left: auto; margin-right: auto; font-size: 15px; }
+  .hero-book-wrap { order: -1; padding-right: 0; padding-top: 8px; }
+  .trust-row { justify-content: center; gap: 14px; }
+  .trust-item { font-size: 11px; }
+  .book { width: 180px; height: 244px; }
+  .book-cover-title { font-size: 26px; }
+  .book-spine { left: -18px; width: 18px; }
+
+  /* Pain */
+  #pain { padding: 56px 0; }
+  .pain-grid { grid-template-columns: 1fr; gap: 12px; margin-top: 28px; }
+  .pain-card { padding: 24px 20px; }
+
+  /* Teaser */
+  #teaser { padding: 56px 0; }
+  .teaser-inner { grid-template-columns: 1fr; gap: 40px; }
+  .teaser-inner > div:last-child .book-wrap { transform: scale(0.95) !important; }
+  .teaser-item { padding: 12px 14px; gap: 12px; }
+  .teaser-num { font-size: 20px; width: 24px; }
+  .teaser-text { font-size: 13px; }
+
+  /* About */
+  #about { padding: 64px 0; }
+  .about-inner { grid-template-columns: 1fr; gap: 32px; text-align: center; }
+  .about-photo { width: 100%; max-width: 320px; height: 320px; margin: 0 auto; }
+  .about-name-row { font-size: clamp(56px, 14vw, 90px); letter-spacing: 2px; }
+  .about-stats { flex-direction: column; gap: 2px; }
+  .about-stat { padding: 14px; }
+  .about-stat:first-child { border-left: none; border-top: 3px solid var(--red); }
+  .about-inner h2.section-h2 { text-align: center !important; }
+  .about-inner .divider { margin-left: auto; margin-right: auto; }
+
+  /* Testimonials */
+  #testimonials { padding: 56px 0; }
+  .testi-grid { grid-template-columns: 1fr; gap: 12px; margin-top: 32px; }
+  .testi-card { padding: 24px 20px; }
+
+  /* What you get */
+  #get { padding: 64px 0; }
+  .get-inner { grid-template-columns: 1fr; gap: 40px; }
+  .get-inner > div:last-child { order: -1; }
+  .get-item-text { font-size: 13px; }
+  .bonus-label { display: inline-block; margin-left: 0; margin-top: 4px; }
+
+  /* Price */
+  #price { padding: 64px 0; }
+  .price-box { padding: 36px 24px 32px; }
+  .price-title { font-size: 26px; }
+  .price-value { font-size: 60px; }
+  .price-btn { padding: 18px 24px; font-size: 20px; letter-spacing: 1.2px; }
+  .secure-icons { flex-wrap: wrap; gap: 10px; }
+  .price-guarantee { flex-direction: column; text-align: center; gap: 12px; }
+  .guarantee-text { text-align: center; }
+
+  /* FAQ */
+  #faq { padding: 56px 0; }
+  .faq-question { padding: 16px 18px; font-size: 14px; }
+  .faq-item.open .faq-answer { max-height: 320px; padding: 0 18px 16px; }
+  .faq-answer p { font-size: 13px; }
+
+  /* Section headers */
+  .section-h2 { font-size: clamp(30px, 7vw, 42px); }
+  .section-sub { font-size: 14px; }
+
+  /* Footer */
+  .footer-inner { flex-direction: column; text-align: center; gap: 14px; padding: 0 20px; }
+  .footer-copy { font-size: 10px; order: 3; }
+  .footer-links { justify-content: center; flex-wrap: wrap; gap: 12px; }
+}
+
+@media (max-width: 380px) {
+  .hero-h1 { font-size: 38px; }
+  .book { width: 160px; height: 218px; }
+  .price-value { font-size: 52px; }
+  .trust-row { gap: 10px; }
+}
+</style>
+<template id="__bundler_thumbnail" data-bg-color="#0A0A0A">
+  <svg viewBox="0 0 1080 1350" xmlns="http://www.w3.org/2000/svg">
+    <rect width="1080" height="1350" fill="#0A0A0A"/>
+    <polygon points="600,0 1080,0 1080,900 400,900" fill="#E30613" opacity="0.18"/>
+    <rect x="80" y="160" width="60" height="8" fill="#E30613" transform="skewX(-12)"/>
+    <rect x="152" y="160" width="60" height="8" fill="#E30613" transform="skewX(-12)"/>
+    <rect x="224" y="160" width="60" height="8" fill="#E30613" transform="skewX(-12)"/>
+    <text x="80" y="340" font-family="sans-serif" font-size="110" font-weight="900" fill="white">PROTOCOLO</text>
+    <text x="80" y="470" font-family="sans-serif" font-size="110" font-weight="900" fill="#E30613">COLUNA</text>
+    <text x="80" y="600" font-family="sans-serif" font-size="110" font-weight="900" fill="white">SEM DOR</text>
+    <rect x="80" y="660" width="200" height="6" fill="#E30613"/>
+    <text x="80" y="730" font-family="sans-serif" font-size="38" fill="#C7C7C7">Alana Barboza · Studio Vitta</text>
+  </svg>
+</template>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-inner">
+    <a class="nav-logo" href="#">
+      <img src="logo.jpg" alt="Studio Vitta" />
+      <span class="nav-logo-text">STUDIO VITTA</span>
+    </a>
+    <a class="nav-cta" href="#price">QUERO ALIVIAR MINHA DOR</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-grid-lines"></div>
+  <div class="container">
+    <div class="hero-inner">
+      <div class="hero-content">
+        <div class="hero-eyebrow">Método exclusivo · 7 dias</div>
+        <h1 class="hero-h1">
+          ACABE COM A<br>
+          <em>DOR LOMBAR</em><br>
+          DE UMA VEZ
+        </h1>
+        <p class="hero-sub">
+          Acabe com a dor lombar em 7 dias com <strong>10–15 minutos de movimento por dia</strong>. Sem academia, sem aparelhos.
+        </p>
+        <div style="display:flex;gap:14px;flex-wrap:wrap;">
+          <a class="btn-primary" href="#price">
+            <span>QUERO ALIVIAR MINHA DOR</span>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+        </div>
+        <div class="trust-row">
+          <div class="trust-item">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="var(--red)" stroke="none"><path d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"/></svg>
+            Garantia de 7 dias
+          </div>
+          <div class="trust-item">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--red)" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>
+            Compra 100% segura
+          </div>
+          <div class="trust-item">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--red)" stroke-width="2"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            +800 alunas
+          </div>
+          <div class="trust-item">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--red)" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+            Acesso imediato
+          </div>
+        </div>
+      </div>
+      <!-- Book mockup -->
+      <div class="hero-book-wrap">
+        <div class="book-wrap">
+          <div class="book">
+            <div class="book-spine">
+              <span class="book-spine-text">PROTOCOLO COLUNA SEM DOR</span>
+            </div>
+            <div class="book-cover">
+              <div class="book-cover-red-block"></div>
+              <div class="book-cover-content">
+                <div class="book-cover-tag">/// Studio Vitta</div>
+                <div class="book-cover-title">PROTOCOLO<br>COLUNA<br>SEM DOR</div>
+                <div class="book-cover-sub">O método de 7 dias para acabar com a dor lombar de uma vez</div>
+                <div class="book-cover-bars" style="margin-top:auto">
+                  <div class="bar"></div><div class="bar"></div><div class="bar"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PAIN POINTS -->
+<section id="pain">
+  <div class="container">
+    <div class="section-header reveal">
+      <span class="tag">Você passa por isso?</span>
+      <h2 class="section-h2">Sua dor tem <em>nome e causa.</em></h2>
+      <p class="section-sub">Não é fraqueza, não é idade. É falta do movimento certo.</p>
+    </div>
+    <div class="pain-grid reveal">
+      <div class="pain-card">
+        <div class="pain-icon">🪑</div>
+        <div class="pain-title">Passa horas sentada e a lombar dói sempre</div>
+        <p class="pain-desc">O sedentarismo comprime os discos intervertebrais e encurta a musculatura que sustenta a coluna. A dor é o sinal que o corpo manda.</p>
+      </div>
+      <div class="pain-card">
+        <div class="pain-icon">😴</div>
+        <div class="pain-title">Acorda com dor e o dia já começa difícil</div>
+        <p class="pain-desc">A posição ao dormir e a tensão muscular acumulada fazem a dor aparecer logo cedo — antes mesmo de você sair da cama.</p>
+      </div>
+      <div class="pain-card">
+        <div class="pain-icon">💊</div>
+        <div class="pain-title">Já tomou remédio, fez fisio, e a dor volta</div>
+        <p class="pain-desc">Porque nenhum deles resolveu a causa raiz. Sem reequilibrar a musculatura da coluna, o alívio é sempre temporário.</p>
+      </div>
+    </div>
+    <div class="reveal" style="margin-top:32px;text-align:center;">
+      <p style="font-size:16px;color:var(--grayC);font-style:italic;max-width:600px;margin:0 auto;">
+        "Depois de anos atendendo alunas, percebi um padrão: a maioria não precisava de cirurgia, de remédio ou de aparelhos caros. Precisava de informação certa e movimento adequado."
+      </p>
+      <p style="font-size:13px;color:var(--gray6);margin-top:10px;font-weight:700;letter-spacing:1px;">— ALANA BARBOZA</p>
+    </div>
+  </div>
+</section>
+
+<!-- TEASER / WHAT'S INSIDE -->
+<section id="teaser">
+  <div class="container">
+    <div class="teaser-inner">
+      <div class="reveal">
+        <span class="tag">O que você vai aprender</span>
+        <h2 class="section-h2" style="text-align:left;">7 dias que <em>mudam tudo</em></h2>
+        <div class="divider"></div>
+        <div class="teaser-list">
+          <div class="teaser-item"><div class="teaser-num">1</div><div class="teaser-text"><strong>Dia 1 · Alívio Imediato</strong>3 exercícios para relaxar a tensão lombar e ativar a circulação na região.</div></div>
+          <div class="teaser-item"><div class="teaser-num">2</div><div class="teaser-text"><strong>Dia 2 · Mobilidade da Coluna</strong>3 exercícios para recuperar a amplitude de movimento da coluna torácica e lombar.</div></div>
+          <div class="teaser-item"><div class="teaser-num">3</div><div class="teaser-text"><strong>Dia 3 · Alongamentos Profundos</strong>3 exercícios para liberar a cadeia posterior e reduzir a tensão nos isquiotibiais.</div></div>
+          <div class="teaser-item"><div class="teaser-num">4</div><div class="teaser-text"><strong>Dia 4 · Quadril e Glúteos</strong>3 exercícios para ativar os glúteos e liberar a tensão do quadril que sobrecarrega a lombar.</div></div>
+          <div class="teaser-item"><div class="teaser-num">5</div><div class="teaser-text"><strong>Dia 5 · Core Funcional</strong>3 exercícios para ativar a musculatura profunda que sustenta e protege a coluna.</div></div>
+          <div class="teaser-item"><div class="teaser-num">6</div><div class="teaser-text"><strong>Dia 6 · Fortalecimento Lombar</strong>2 exercícios para fortalecer os músculos paravertebrais para suporte duradouro.</div></div>
+          <div class="teaser-item"><div class="teaser-num">7</div><div class="teaser-text"><strong>Dia 7 · Cervical + Integração</strong>Cuidar da cervical e integrar tudo o que foi trabalhado na semana.</div></div>
+        </div>
+      </div>
+      <div class="reveal" style="display:flex;flex-direction:column;align-items:center;gap:20px;">
+        <div class="book-wrap" style="transform:scale(1.1)">
+          <div class="book" style="animation-delay:-2s">
+            <div class="book-spine"><span class="book-spine-text">PROTOCOLO COLUNA SEM DOR</span></div>
+            <div class="book-cover">
+              <div class="book-cover-red-block"></div>
+              <div class="book-cover-content">
+                <div class="book-cover-tag">/// Studio Vitta</div>
+                <div class="book-cover-title">PROTOCOLO<br>COLUNA<br>SEM DOR</div>
+                <div class="book-cover-sub">19 páginas · 7 dias · 19 exercícios em vídeo</div>
+                <div class="book-cover-bars" style="margin-top:auto"><div class="bar"></div><div class="bar"></div><div class="bar"></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div style="text-align:center;background:var(--dark2);padding:16px 24px;border-left:3px solid var(--red);">
+          <p style="font-family:'Bebas Neue',sans-serif;font-size:28px;color:var(--red);margin:0;">19 PÁGINAS</p>
+          <p style="font-size:12px;color:var(--gray6);margin:4px 0 0;">7 dias · 19 exercícios em vídeo</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="about-name-bg">
+    <div class="about-name-row">ALANA BARBOZA</div>
+    <div class="about-name-row">ALANA BARBOZA</div>
+    <div class="about-name-row">ALANA BARBOZA</div>
+  </div>
+  <div class="container">
+    <div class="about-inner">
+      <div class="about-photo reveal">
+        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="var(--gray3)" stroke-width="1"><rect x="3" y="5" width="18" height="14" rx="1"/><circle cx="12" cy="12" r="4"/></svg>
+        <p class="about-photo-label">[FOTO ALANA SCHERER]</p>
+      </div>
+      <div class="reveal">
+        <span class="tag">Quem é a Alana?</span>
+        <h2 class="section-h2" style="text-align:left;"><em>Alana</em> Barboza</h2>
+        <div class="divider"></div>
+        <p style="font-size:15px;color:var(--grayC);line-height:1.75;margin-bottom:14px;">Personal Trainer especializada em saúde da coluna vertebral, com 9 anos de experiência e mais de 800 alunas atendidas no Studio Vitta.</p>
+        <p style="font-size:15px;color:var(--grayC);line-height:1.75;margin-bottom:24px;">"Movimento é remédio. A dose certa muda tudo em uma semana." Seu trabalho une ciência do movimento, consciência corporal e um olhar humano — porque dor não é igual para todo mundo, e o tratamento também não deve ser.</p>
+        <div class="about-stats">
+          <div class="about-stat">
+            <div class="about-stat-val">9</div>
+            <div class="about-stat-label">anos de experiência</div>
+          </div>
+          <div class="about-stat">
+            <div class="about-stat-val">+800</div>
+            <div class="about-stat-label">alunas atendidas</div>
+          </div>
+          <div class="about-stat">
+            <div class="about-stat-val">80%</div>
+            <div class="about-stat-label">com 3+ fatores de dor</div>
+          </div>
+        </div>
+        <a class="btn-ghost" href="#price">QUERO COMEÇAR AGORA</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section id="testimonials">
+  <div class="container">
+    <div class="section-header reveal">
+      <span class="tag">Resultados reais</span>
+      <h2 class="section-h2">Profissionais que já <em>transformaram</em><br>sua relação com a dor</h2>
+    </div>
+    <div class="testi-grid reveal">
+      <div class="testi-card">
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-text">[DEPOIMENTO — Nome aluna 1]</p>
+        <div class="testi-author">
+          <div class="testi-avatar">M</div>
+          <div><div class="testi-name">Maria R., 42 anos</div><div class="testi-role">Professora · Urupês, SP</div></div>
+        </div>
+      </div>
+      <div class="testi-card">
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-text">[DEPOIMENTO — Nome aluna 2]</p>
+        <div class="testi-author">
+          <div class="testi-avatar">C</div>
+          <div><div class="testi-name">Carla M., 51 anos</div><div class="testi-role">Administradora · São Paulo, SP</div></div>
+        </div>
+      </div>
+      <div class="testi-card">
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-text">[DEPOIMENTO — Nome aluna 3]</p>
+        <div class="testi-author">
+          <div class="testi-avatar">S</div>
+          <div><div class="testi-name">Sandra F., 38 anos</div><div class="testi-role">Designer · Campinas, SP</div></div>
+        </div>
+      </div>
+      <div class="testi-card">
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-text">[DEPOIMENTO — Nome aluna 4]</p>
+        <div class="testi-author">
+          <div class="testi-avatar">A</div>
+          <div><div class="testi-name">Ana P., 45 anos</div><div class="testi-role">Enfermeira · Ribeirão Preto, SP</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHAT YOU GET -->
+<section id="get">
+  <div class="container">
+    <div class="get-inner">
+      <div class="reveal">
+        <span class="tag">O que você vai receber</span>
+        <h2 class="section-h2" style="text-align:left;">Tudo o que você <em>precisa</em><br>para acabar com a dor</h2>
+        <div class="divider"></div>
+        <div class="get-list">
+          <div class="get-item"><div class="get-check">✓</div><div class="get-item-text"><strong>Protocolo Coluna Sem Dor — Ebook PDF</strong> 19 páginas com 7 dias de exercícios guiados para dor lombar leve a moderada</div></div>
+          <div class="get-item"><div class="get-check">✓</div><div class="get-item-text"><strong>19 exercícios em vídeo</strong> Acesso via play em cada exercício. Sem cadastro, sem aplicativo.</div></div>
+          <div class="get-item"><div class="get-check">✓</div><div class="get-item-text"><strong>Os 3 pilares do alívio</strong> Mobilidade, Fortalecimento e Consciência Postural — explicados e aplicados em cada dia.</div></div>
+          <div class="get-item"><div class="get-check">✓</div><div class="get-item-text"><strong>Roadmap progressivo de 7 dias</strong> Cada dia construído sobre o anterior — do alívio imediato à integração completa.</div></div>
+          <div class="get-item"><div class="get-check">✓</div><div class="get-item-text"><strong>Aviso médico e orientações de segurança</strong> Para você praticar com tranquilidade e responsabilidade.</div></div>
+          <div class="get-item"><div class="get-check">✓</div><div class="get-item-text"><strong>Meditação final guiada</strong> Sequência de 5 minutos para encerrar a jornada e fixar o aprendizado.</div></div>
+        </div>
+      </div>
+      <div class="reveal" style="display:flex;flex-direction:column;align-items:center;gap:16px;">
+        <div class="book-wrap">
+          <div class="book" style="animation-delay:-1s">
+            <div class="book-spine"><span class="book-spine-text">PROTOCOLO COLUNA SEM DOR</span></div>
+            <div class="book-cover">
+              <div class="book-cover-red-block"></div>
+              <div class="book-cover-content">
+                <div class="book-cover-tag">/// Studio Vitta</div>
+                <div class="book-cover-title">PROTOCOLO<br>COLUNA<br>SEM DOR</div>
+                <div class="book-cover-bars" style="margin-top:auto"><div class="bar"></div><div class="bar"></div><div class="bar"></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div style="text-align:center;">
+          <p style="font-size:12px;color:var(--gray6);letter-spacing:1.5px;text-transform:uppercase;">Acesso imediato após a compra</p>
+          <div style="display:flex;gap:12px;justify-content:center;margin-top:10px;">
+            <span style="font-size:11px;color:var(--gray3);display:flex;align-items:center;gap:4px;">📱 Celular</span>
+            <span style="font-size:11px;color:var(--gray3);display:flex;align-items:center;gap:4px;">💻 PC</span>
+            <span style="font-size:11px;color:var(--gray3);display:flex;align-items:center;gap:4px;">🖨️ Impresso</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRICE -->
+<section id="price">
+  <div class="container">
+    <div class="section-header reveal" style="margin-bottom:40px;">
+      <span class="tag">Investimento</span>
+      <h2 class="section-h2">Comece hoje.<br>Sem dor <em>em 7 dias.</em></h2>
+    </div>
+    <div class="price-box reveal">
+      <p class="price-eyebrow">PROTOCOLO COLUNA SEM DOR</p>
+      <p class="price-title">Ebook PDF Completo + 19 Vídeos</p>
+      <p class="price-from">De R$ 97,00</p>
+      <p class="price-value">R$ 47</p>
+      <p class="price-installment">pagamento único · acesso vitalício</p>
+      <div class="price-cta-wrap">
+        <a class="price-btn" href="#">
+          QUERO ALIVIAR MINHA DOR AGORA
+        </a>
+        <div class="secure-icons">
+          <span class="secure-icon">🔒 Compra segura</span>
+          <span class="secure-icon">⚡ Acesso imediato</span>
+          <span class="secure-icon">💳 Cartão ou PIX</span>
+        </div>
+      </div>
+      <div class="price-guarantee">
+        <div class="guarantee-badge">
+          <div class="guarantee-num">7</div>
+          <div class="guarantee-days">DIAS</div>
+        </div>
+        <p class="guarantee-text">
+          <strong style="color:var(--white);display:block;margin-bottom:4px;">Garantia incondicional de 7 dias</strong>
+          Se em 7 dias você não sentir nenhuma melhora, devolvemos 100% do seu dinheiro. Sem perguntas, sem burocracia.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section id="faq">
+  <div class="container">
+    <div class="section-header reveal">
+      <span class="tag">Dúvidas</span>
+      <h2 class="section-h2">Perguntas <em>Frequentes</em></h2>
+    </div>
+    <div class="faq-list reveal">
+      <div class="faq-item">
+        <button class="faq-question"><span>Para quem é esse ebook?</span><span class="faq-icon">+</span></button>
+        <div class="faq-answer"><p>Para adultos saudáveis com dor lombar leve a moderada. NÃO substitui avaliação, diagnóstico ou tratamento médico. Em caso de dor aguda, cirurgia prévia, hérnia de disco ou condição vertebral grave, consulte um médico antes de iniciar.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-question"><span>Preciso de academia ou equipamentos?</span><span class="faq-icon">+</span></button>
+        <div class="faq-answer"><p>Não. Todos os exercícios são feitos no chão, sem equipamentos. Você só precisa de um tapete ou toalha e 10 a 15 minutos por dia.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-question"><span>Como vou receber o ebook?</span><span class="faq-icon">+</span></button>
+        <div class="faq-answer"><p>Imediatamente após a confirmação do pagamento. Você receberá um e-mail com o link para baixar o PDF em alta qualidade, diretamente no seu dispositivo.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-question"><span>E se eu tiver hérnia de disco?</span><span class="faq-icon">+</span></button>
+        <div class="faq-answer"><p>Recomendamos consultar seu médico antes de iniciar qualquer protocolo de exercícios. Muitos dos exercícios são indicados para pessoas com hérnia, mas a autorização médica é fundamental para sua segurança.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-question"><span>Os vídeos estão incluídos?</span><span class="faq-icon">+</span></button>
+        <div class="faq-answer"><p>Sim. Cada um dos 19 exercícios tem um botão play que dá acesso direto ao vídeo demonstrativo com a Alana. Sem aplicativo, sem cadastro.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-question"><span>Qual a política de reembolso?</span><span class="faq-icon">+</span></button>
+        <div class="faq-answer"><p>Você tem 7 dias para experimentar o protocolo completo. Se não ficar satisfeita por qualquer motivo, basta enviar um e-mail e devolvemos 100% do valor pago. Sem perguntas.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-logo">
+      <img src="logo.jpg" alt="Studio Vitta" />
+      <span class="footer-logo-text">STUDIO VITTA · ALANA BARBOZA</span>
+    </div>
+    <p class="footer-copy">© 2025 Alana Barboza · Studio Vitta · Fitness &amp; Saúde · Todos os direitos reservados</p>
+    <div class="footer-links">
+      <a href="#">Política de Privacidade</a>
+      <a href="#">Termos de Uso</a>
+      <a href="#">Suporte</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+// FAQ accordion
+document.querySelectorAll('.faq-question').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const item = btn.closest('.faq-item');
+    const isOpen = item.classList.contains('open');
+    document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+    if (!isOpen) item.classList.add('open');
+  });
+});
+
+// Scroll reveal
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); }
+  });
+}, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
